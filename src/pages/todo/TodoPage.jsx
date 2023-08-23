@@ -1,6 +1,9 @@
+import { FormComponent } from '../../components/form/FormComponent'
 
 export const TodoPage = () => {
   return (
-    <div>TodoPage</div>
+    <div className="TodoFormContainer">
+      <FormComponent/>
+    </div>
   )
 }
