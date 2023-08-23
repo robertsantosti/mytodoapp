@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 import { useEffect } from "react";
 
 export const FormComponent = ({ todo }) => {
-  console.log(todo);
   const { 
     register, 
     handleSubmit,
     setValue,
-    formState: {errors}
+    watch,
+    formState: { errors }
   } = useForm();
 
   const onSubmit = (data) => {
@@ -22,7 +22,7 @@ export const FormComponent = ({ todo }) => {
       setValue('title', todo.title);
       setValue('description', todo.description);
     }
-  }, []);
+  }, [todo]);
 
   return (
     <form className="FormTodo" onSubmit={handleSubmit(onSubmit)}>
@@ -58,6 +58,11 @@ export const FormComponent = ({ todo }) => {
                 message: 'Esse campo possui no maximo 50 caracteres'
               }
             })}></textarea>
+
+            <div className="CounterContainer">
+              { watch('description')?.length || 0 } de 50 caracteres
+            </div>
+
             { errors.description && 
               <p>{errors.description.message}</p>
             }
