@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom"
+import { HeaderComponent } from "../components/header/HeaderComponent"
 
 export const AppLayout = () => {
   return (
     <div className="Layout">
-      {/* TODO: Subistituir por componente header posteriormente */}
-      <header>Header da aplicação</header>
+      <HeaderComponent/>
 
       <main className="Main">
         <div className="ActionsContainer">
