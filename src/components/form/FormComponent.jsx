@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { useEffect } from "react";
 
 export const FormComponent = ({ todo }) => {
+  console.log(todo);
   const { 
     register, 
     handleSubmit,
@@ -19,13 +20,15 @@ export const FormComponent = ({ todo }) => {
   useEffect(() => {
     if(todo) {
       setValue('title', todo.title);
-      setValue('desctiption', todo.description);
+      setValue('description', todo.description);
     }
   }, []);
 
   return (
     <form className="FormTodo" onSubmit={handleSubmit(onSubmit)}>
-      <legend className="FormTitle">Criar uma nova tarefa</legend>
+      <legend className="FormTitle">
+        { !todo ? 'Criar uma nova tarefa' : `Editar tarefa ${todo.title}`}
+      </legend>
 
       <div className="InputsContainer">
         <div className="InputGroup">
