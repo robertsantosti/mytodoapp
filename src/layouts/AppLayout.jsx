@@ -18,11 +18,13 @@ export const AppLayout = () => {
       <HeaderComponent/>
 
       <Styled.Main>
-        <Styled.ActionsContainer>
-          <ButtonComponent onClick={handleClick}>
-            { location.pathname.includes('/todo') ? 'Ver Tarefas' : 'Nova Tarefa' }
-          </ButtonComponent>
-        </Styled.ActionsContainer>
+        { (location.pathname === '/' || location.pathname.includes('/todo')) &&
+          <Styled.ActionsContainer>
+            <ButtonComponent onClick={handleClick}>
+              { location.pathname.includes('/todo') ? 'Ver Tarefas' : 'Nova Tarefa' }
+            </ButtonComponent>
+          </Styled.ActionsContainer>
+        }
 
         <Styled.MainContainer>
           <Outlet/>
