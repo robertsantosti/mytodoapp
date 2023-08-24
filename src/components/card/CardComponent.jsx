@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { useNavigate } from "react-router-dom"
 
 import * as Styled from './CardComponent.style';
+import { StyleUtils } from "../../utils/style";
 
 
 export const CardComponent = ({ todo }) => {
@@ -27,13 +28,13 @@ export const CardComponent = ({ todo }) => {
       <Styled.Title>{ title }</Styled.Title>
       <Styled.Description>{ description }</Styled.Description>
       <Styled.Actions>
-        <ButtonComponent onClick={handleEdit}>
+        <ButtonComponent bg='#FFF' color={StyleUtils.Colors.primary} simetric={true} onClick={handleEdit}>
           <MdEdit/>
         </ButtonComponent>
-        <ButtonComponent onClick={handleDelete}>
+        <ButtonComponent bg='#FFF' color={StyleUtils.Colors.danger} simetric={true} onClick={handleDelete}>
           <MdDelete/>
         </ButtonComponent>
-        <ButtonComponent onClick={changeStatus}>
+        <ButtonComponent bg='#FFF' color={StyleUtils.Colors.success} simetric={true} onClick={changeStatus}>
           <MdAutorenew/>
         </ButtonComponent>
       </Styled.Actions>

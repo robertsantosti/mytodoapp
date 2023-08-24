@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types'
+import * as Styled from './ButtonComponent.style';
 
-export const ButtonComponent = ({onClick, disabled, loading, children, type = 'button'}) => {
+export const ButtonComponent = ({onClick, disabled, loading, children, type = 'button', color, bg, simetric = false}) => {
   return (
-    <button onClick={onClick} disabled={disabled} type={type}>
+    <Styled.Button $color={color} $bg={bg} $simetric={simetric} onClick={onClick} disabled={disabled} type={type}>
       { loading ? 'Carregando' : children }
-    </button>
+    </Styled.Button>
   )
 }
 
@@ -13,5 +14,8 @@ ButtonComponent.propTypes = {
   loading: PropTypes.bool,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
-  type: PropTypes.string, 
+  type: PropTypes.string,
+  color: PropTypes.string,
+  bg: PropTypes.string,
+  simetric: PropTypes.bool 
 }
