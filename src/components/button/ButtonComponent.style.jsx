@@ -18,6 +18,18 @@ export const Button = styled.button`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  cursor: pointer;
+  opacity: .8;
+  transition: all .5s;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+  }
 `
 
 Button.propTypes = {
