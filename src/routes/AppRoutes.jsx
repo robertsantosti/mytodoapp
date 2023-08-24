@@ -12,8 +12,8 @@ export const AppRoutes = () => {
           <Route index element={<HomePage/>}/>
           <Route path="/todo" element={<TodoPage/>}/>
           <Route path="/todo/:id" element={<TodoPage/>}/>
+          <Route path="*" element={<ErrorPage/>}/>
         </Route>
-        <Route path="*" element={<ErrorPage/>}/>
       </Routes>
     </Router>
   )
