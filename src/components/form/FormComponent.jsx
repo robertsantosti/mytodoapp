@@ -3,6 +3,8 @@ import { ButtonComponent } from "../button/ButtonComponent"
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 
+import * as Styled from './FormComponent.style';
+
 export const FormComponent = ({ todo }) => {
   const { 
     register, 
@@ -25,15 +27,15 @@ export const FormComponent = ({ todo }) => {
   }, [todo]);
 
   return (
-    <form className="FormTodo" onSubmit={handleSubmit(onSubmit)}>
-      <legend className="FormTitle">
+    <Styled.FormTodo onSubmit={handleSubmit(onSubmit)}>
+      <Styled.FormTitle>
         { !todo ? 'Criar uma nova tarefa' : `Editar tarefa ${todo.title}`}
-      </legend>
+      </Styled.FormTitle>
 
-      <div className="InputsContainer">
-        <div className="InputGroup">
-          <label htmlFor="title">Titulo</label>
-          <input 
+      <Styled.InputsContainer>
+        <Styled.InputGroup>
+          <Styled.Label htmlFor="title">Titulo</Styled.Label>
+          <Styled.Input 
             type="text" 
             id="title" 
             {...register('title', {
@@ -41,13 +43,13 @@ export const FormComponent = ({ todo }) => {
             })}
           />
           { errors.title && 
-            <p>{errors.title.message}</p>
+            <Styled.ErrorText>{errors.title.message}</Styled.ErrorText>
           }
-        </div>
+        </Styled.InputGroup>
 
-        <div className="InputGroup">
-          <label htmlFor="description">Descrição</label>
-          <textarea 
+        <Styled.InputGroup>
+          <Styled.Label>Descrição</Styled.Label>
+          <Styled.TextArea 
             id="description"
             cols="30"
             rows="10" 
@@ -55,22 +57,22 @@ export const FormComponent = ({ todo }) => {
               required: '* Este campo e obrigatorio',
               maxLength: {
                 value: 50,
-                message: 'Esse campo possui no maximo 50 caracteres'
+                message: '* Esse campo possui no maximo 50 caracteres'
               }
-            })}></textarea>
+            })}></Styled.TextArea>
 
-            <div className="CounterContainer">
-              { watch('description')?.length || 0 } de 50 caracteres
-            </div>
+            <Styled.CounterContainer>
+              <p>{ watch('description')?.length || 0 } de 50 caracteres</p>
+            </Styled.CounterContainer>
 
             { errors.description && 
-              <p>{errors.description.message}</p>
+              <Styled.ErrorText>{errors.description.message}</Styled.ErrorText>
             }
-        </div>
-      </div>
+        </Styled.InputGroup>
+      </Styled.InputsContainer>
 
-      <ButtonComponent type='submit'>Salvar</ButtonComponent>
-    </form>
+      <ButtonComponent type='submit' disabled={Object.keys(errors)?.length}>Salvar</ButtonComponent>
+    </Styled.FormTodo>
   )
 }
 

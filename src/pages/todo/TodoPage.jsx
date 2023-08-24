@@ -3,6 +3,8 @@ import { FormComponent } from '../../components/form/FormComponent'
 import { useEffect, useState } from 'react';
 import { MockUtils } from '../../utils/mock';
 
+import * as Styled from './TodoPage.style';
+
 export const TodoPage = () => {
   const { id } = useParams();
   const [todo, setTodo] = useState();
@@ -14,8 +16,8 @@ export const TodoPage = () => {
   }, [])
 
   return (
-    <div className="TodoFormContainer">
+    <Styled.TodoFormContainer>
       <FormComponent todo={todo}/>
-    </div>
+    </Styled.TodoFormContainer>
   )
 }
