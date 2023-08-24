@@ -3,10 +3,12 @@ import { MdEdit, MdDelete, MdAutorenew} from 'react-icons/md'
 import PropTypes from 'prop-types'
 import { useNavigate } from "react-router-dom"
 
+import * as Styled from './CardComponent.style';
+
 
 export const CardComponent = ({ todo }) => {
   const navigate = useNavigate();
-  const { id, title, description } = todo;
+  const { id, title, description, status } = todo;
 
   const handleEdit = () => {
     navigate(`/todo/${id}`);
@@ -21,10 +23,10 @@ export const CardComponent = ({ todo }) => {
   }
 
   return (
-    <div className="CardContainer">
-      <h3 className="Title">{ title }</h3>
-      <p className="Description">{ description }</p>
-      <div className="ActionsContainer">
+    <Styled.CardContainer $status={status}>
+      <Styled.Title>{ title }</Styled.Title>
+      <Styled.Description>{ description }</Styled.Description>
+      <Styled.Actions>
         <ButtonComponent onClick={handleEdit}>
           <MdEdit/>
         </ButtonComponent>
@@ -34,8 +36,8 @@ export const CardComponent = ({ todo }) => {
         <ButtonComponent onClick={changeStatus}>
           <MdAutorenew/>
         </ButtonComponent>
-      </div>
-    </div>
+      </Styled.Actions>
+    </Styled.CardContainer>
   )
 }
 
