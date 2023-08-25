@@ -6,15 +6,24 @@ import { useNavigate } from "react-router-dom"
 import * as Styled from './CardComponent.style';
 import { StyleUtils } from "../../utils/style";
 import { ApiService } from "../../services/ApiService";
+import { useContext } from "react";
+import { TodosContext } from "../../contexts/TodosContext";
 
 
 export const CardComponent = ({ todo }) => {
   const navigate = useNavigate();
   const { id, title, description, status } = todo;
+  const {setTodos} = useContext(TodosContext)
   const service = new ApiService('tasks');
 
   const handleEdit = () => {
     navigate(`/todo/${id}`);
+  }
+
+  const getTasks = async () => {
+    service.Get('tasks').then(response => {
+      setTodos(response);
+    })
   }
 
   const handleDelete = () => {
@@ -25,7 +34,8 @@ export const CardComponent = ({ todo }) => {
     }
 
     service.Delete(id).then(() => {
-      alert(`${title} excluido com sucesso.`)
+      alert(`${title} excluido com sucesso.`);
+      getTasks()
     })
   }
 
@@ -42,7 +52,7 @@ export const CardComponent = ({ todo }) => {
 
     service.Update(id, data).then(response => {
       alert(`${response.title} atualizado com sucesso.`);
-      navigate('/');
+      getTasks()
     })
   }
 
