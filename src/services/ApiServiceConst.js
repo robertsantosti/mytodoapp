@@ -6,33 +6,38 @@ const getUrl = (resource) => {
 }
 
 const Get = async (resource) => {
-  return await fetch(getUrl(resource));
+  const response = await fetch(getUrl(resource));
+  return response.json();
 }
 
 const Show = async (resource, id) => {
-  return await fetch(getUrl(`${resource}/${id}`));
+  const response = await fetch(getUrl(`${resource}/${id}`));
+  return response.json();
 }
 
 const Create = async (resource, data) => {
-  return await fetch(getUrl(resource), {
+  const response = await fetch(getUrl(resource), {
     method: 'POST',
     body: data,
     headers,
   })
+  return response.json();
 }
 
 const Update = async (resource, id, data) => {
-  return await fetch(getUrl(`${resource}/${id}`), {
+  const response = await fetch(getUrl(`${resource}/${id}`), {
     method: 'POST',
     body: data,
     headers,
   })
+  return response.json();
 }
 
 const Delete = async (resource, id) => {
-  return await fetch(getUrl(`${resource}/${id}`), {
+  const response = await fetch(getUrl(`${resource}/${id}`), {
     method: 'DELETE',
   });
+  return response.json();
 }
 
 export const ApiService = {

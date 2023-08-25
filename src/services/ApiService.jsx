@@ -9,32 +9,37 @@ export class ApiService {
   }
 
   Get = async () => {
-    return await fetch(this.url);
+    const response = await fetch(this.url);
+    return response.json();
   }
   
   Show = async (id) => {
-    return await fetch(`${this.url}/${id}`);
+    const response = await fetch(`${this.url}/${id}`);
+    return response.json();
   }
   
   Create = async (data) => {
-    return await fetch(this.url, {
+    const response = await fetch(this.url, {
       method: 'POST',
       body: data,
       headers: this.headers,
     })
+    return response.json();
   }
   
   Update = async (id, data) => {
-    return await fetch(`${this.url}/${id}`, {
+    const response = await fetch(`${this.url}/${id}`, {
       method: 'POST',
       body: data,
       headers: this.headers,
     })
+    return response.json();
   }
   
   Delete = async (id) => {
-    return await fetch(`${this.url}/${id}`, {
+    const response = await fetch(`${this.url}/${id}`, {
       method: 'DELETE',
     });
+    return response.json();
   }
 }
