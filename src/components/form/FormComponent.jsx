@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { useEffect } from "react";
 
 import * as Styled from './FormComponent.style';
+import { ApiService } from "../../services/ApiService";
+import { useNavigate } from "react-router-dom";
 
 export const FormComponent = ({ todo }) => {
   const { 
@@ -14,9 +16,15 @@ export const FormComponent = ({ todo }) => {
     formState: { errors }
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    //requisição pro server
+  const service = new ApiService('tasks');
+  const navigate = useNavigate();
+
+  const onSubmit = async (data) => {
+    todo 
+      ? await service.Update(todo.id, data).then(response => alert(`${response.title} atualizado com sucesso`))
+      : await service.Create(data).then(response => alert(`${response.title} criado com sucesso`))
+
+    navigate('/');
   }
 
   useEffect(() => {
