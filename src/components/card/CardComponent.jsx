@@ -5,22 +5,45 @@ import { useNavigate } from "react-router-dom"
 
 import * as Styled from './CardComponent.style';
 import { StyleUtils } from "../../utils/style";
+import { ApiService } from "../../services/ApiService";
 
 
 export const CardComponent = ({ todo }) => {
   const navigate = useNavigate();
   const { id, title, description, status } = todo;
+  const service = new ApiService('tasks');
 
   const handleEdit = () => {
     navigate(`/todo/${id}`);
   }
 
   const handleDelete = () => {
-    //Chamar serviço para deletar o todo
+    const change = confirm('Deseja realmente realizar essa ação?')
+
+    if(!change) {
+      return;
+    }
+
+    service.Delete(id).then(() => {
+      alert(`${title} excluido com sucesso.`)
+    })
   }
 
   const changeStatus = () => {
-    // Chamar serviço para alterar status do todo
+    const change = confirm('Deseja realmente realizar essa ação?')
+
+    if(!change) {
+      return;
+    }
+
+    const data = {
+      status: !status
+    }
+
+    service.Update(id, data).then(response => {
+      alert(`${response.title} atualizado com sucesso.`);
+      navigate('/');
+    })
   }
 
   return (

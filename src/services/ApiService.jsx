@@ -29,8 +29,8 @@ export class ApiService {
   
   Update = async (id, data) => {
     const response = await fetch(`${this.url}/${id}`, {
-      method: 'POST',
-      body: data,
+      method: 'PATCH',
+      body: JSON.stringify(data),
       headers: this.headers,
     })
     return response.json();
