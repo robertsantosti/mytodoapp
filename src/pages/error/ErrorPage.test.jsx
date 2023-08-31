@@ -23,19 +23,19 @@ describe('Test Suite ErrorPage', () => {
   })
 
   //Deve renderizar o componente ErrorPage
-  it('Shuld be able to render component ErrorPage', () => {
+  it('should be able to render component ErrorPage', () => {
     const component = screen.getByTestId('error-page-component')
     expect(component).toBeInTheDocument()
   })
 
   //Deve renderizar o texto 'Opss!' em um titulo
-  it('Shuld be able render text "Opss!" in title', () => {
+  it('should be able render text "Opss!" in title', () => {
     const text = screen.getByText(/Opss!/i)
     expect(text).toBeInTheDocument()
   })
 
   //Deve redirecionar o usuário para a pagina Home
-  it('Shuld be able redirect user to home page', () => {
+  it('should be able redirect user to home page', () => {
     const button = screen.getByText(/Voltar para página inicial/i)
     fireEvent.click(button);
     expect(mockNavigateTo).toHaveBeenCalledWith('/')
