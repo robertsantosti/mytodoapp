@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { ButtonComponent } from './ButtonComponent'
 import { vi } from 'vitest';
 
-const mockFn = vi.fn();
+const fn = vi.fn();
 
 describe('Test Suite ButtonComponent', () => {
   beforeEach(() => {
@@ -58,7 +58,9 @@ describe('Test Suite ButtonComponent loading', () => {
 
 describe('Test Suite ButtonComponent has click action', () => {
   it('should be click button call function', () => {
-    const button = render(<ButtonComponent onClick={() => {}}>Meu Botão</ButtonComponent>)
-    const buttonSpy = vi.spyOn(button, 'click');
+    render(<ButtonComponent onClick={fn}>Meu Botão</ButtonComponent>)
+    const button = screen.getByTestId('button-component');
+    fireEvent.click(button);
+    expect(fn).toBeCalled();
   })
 })
