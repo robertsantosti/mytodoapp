@@ -11,11 +11,11 @@ export const ErrorPage = () => {
   }
 
   return (
-    <Styled.ErrorContainer>
+    <Styled.ErrorContainer data-testid="error-page-component">
       <h3>Opss! Página não encontrada...</h3>
       <p>Não Conseguimos encontrar a página solicitada!</p>
       <ButtonComponent onClick={() => { navigateTo('/') }}>
-        Votar para pagina inicial
+        Voltar para página inicial
       </ButtonComponent>
     </Styled.ErrorContainer>
   )
