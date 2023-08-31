@@ -3,7 +3,7 @@ import * as Styled from './ButtonComponent.style';
 
 export const ButtonComponent = ({onClick, disabled, loading, children, type = 'button', color, bg, simetric = false}) => {
   return (
-    <Styled.Button $color={color} $bg={bg} $simetric={simetric} onClick={onClick} disabled={disabled} type={type}>
+    <Styled.Button data-testid="button-component" $color={color} $bg={bg} $simetric={simetric} onClick={onClick} disabled={disabled} type={type}>
       { loading ? 'Carregando' : children }
     </Styled.Button>
   )
