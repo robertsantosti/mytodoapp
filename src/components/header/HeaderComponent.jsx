@@ -3,8 +3,8 @@ import * as Styled from './HeaderComponent.style'
 
 export const HeaderComponent = () => {
   return (
-    <Styled.Header>
-      <Styled.Logo>
+    <Styled.Header data-testid="header-component">
+      <Styled.Logo data-testid="header-logo">
         My<span>Todo</span>App
       </Styled.Logo>
 
